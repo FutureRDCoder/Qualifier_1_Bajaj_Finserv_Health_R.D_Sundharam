@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Qualifier_1
+
+server:
+  port: 8080
+
+gemini:
+  api-key: DUMMY_FOR_NOW
