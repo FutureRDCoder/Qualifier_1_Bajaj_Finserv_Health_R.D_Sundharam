@@ -5,5 +5,5 @@ spring:
 server:
   port: 8080
 
-gemini:
-  api-key: DUMMY_FOR_NOW
+openai:
+  api-key: YOUR_OPENAI_API_KEY

@@ -2,6 +2,7 @@ package controller;
 
 import dto.ApiResponse;
 import dto.BfhlRequest;
+import service.AiService;
 import exception.BadRequestException;
 import util.MathUtils;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,12 @@ import java.util.stream.Stream;
 public class BfhlController {
 
     private static final String EMAIL = "r.d2423.be23@chitkara.edu.in";
+
+    private final AiService aiService;
+
+    public BfhlController(AiService aiService) {
+        this.aiService = aiService;
+    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<?>> process(@RequestBody BfhlRequest request) {
@@ -42,7 +49,7 @@ public class BfhlController {
         } else if (request.getHcf() != null) {
             data = MathUtils.hcf(request.getHcf());
         } else {
-            data = request.getAI().trim();
+            data = aiService.askSingleWord(request.getAI());
         }
 
         return ResponseEntity.ok(
